@@ -327,7 +327,7 @@ defmodule Huex do
   """
   @spec set_group_colorloop(Bridge.t, group) :: Bridge.t
   def set_group_colorloop(bridge, group) do
-    bridge |> set_group_state(group, %{on: true, sat: 254, effect:"colorloop"})
+    bridge |> set_group_state(group, %{on: true, sat: 254, effect: "colorloop"})
   end
 
   @doc """
