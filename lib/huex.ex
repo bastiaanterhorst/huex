@@ -328,7 +328,7 @@ defmodule Huex do
   """
   @spec nudge_group_brightness(Bridge.t, group, float) :: Bridge.t
   def nudge_group_brightness(bridge, group, brightness_inc) do
-    bridge |> set_group_state(group, %{on: true, bri: round(brightness_inc * 255.0)})
+    bridge |> set_group_state(group, %{on: true, bri_inc: round(brightness_inc * 255.0)})
   end
   
   @doc """
