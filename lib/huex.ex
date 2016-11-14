@@ -321,6 +321,14 @@ defmodule Huex do
   def set_group_color(bridge, group, {x, y}, transition_time_ms) do
     bridge |> set_group_state(group, %{on: true, xy: [x, y], transitiontime: transition_time(transition_time_ms)})
   end
+  
+  @doc """
+  Applies a color loop effect to the given group
+  """
+  @spec set_group_colorloop(Bridge.t, group) :: Bridge.t
+  def set_group_colorloop(bridge, group) do
+    bridge |> set_group_state(group, %{on: true, sat:254, effect:"colorloop"})
+  end
 
   @doc """
   In- or decrement the brigthness of the given group (a value between -1 and 1).
