@@ -80,6 +80,8 @@ bridge
 |> Huex.set_color(2, {0.167, 0.04})                  # XY
 |> Huex.set_color(2, Huex.Color.rgb(1, 0.75, 0.25))  # RGB (see limitations)
 |> Huex.set_brightness(2, 0.75)                      # Brightness at 75%
+|> Huex.nudge_brightness(2, -0.1)                      # Reduce brightness with 10%
+|> Huex.turn_group_on_with_scene(2, "Sexy time")      # Apply a scene to a group
 ```
 
 #### Error Handling

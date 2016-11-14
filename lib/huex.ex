@@ -249,6 +249,24 @@ defmodule Huex do
   def turn_group_on(bridge, group, transition_time_ms) do
     bridge |> set_group_state(group, %{on: true, transitiontime: transition_time(transition_time_ms)})
   end
+  
+  @doc """
+  Turns the given group on and sets the scene.
+  Requires the connection to be authorized.
+  """
+  @spec turn_group_on_with_scene(Bridge.t, group, string) :: Bridge.t
+  def turn_group_on_with_scene(bridge, group, scene) do
+    bridge |> set_group_state(group, %{on: true, scene: scene})
+  end
+  
+  @doc """
+  Turns the given group on and sets the scene using the given transition time (in ms).
+  Requires the connection to be authorized.
+  """
+  @spec turn_group_on_with_scene(Bridge.t, group, string, non_neg_integer) :: Bridge.t
+  def turn_group_on_with_scene(bridge, group, scene, transition_time_ms) do
+    bridge |> set_group_state(group, %{on: true, scene: scene, transitiontime: transition_time(transition_time_ms)})
+  end
 
   @doc """
   Turns the given group off.
@@ -302,6 +320,24 @@ defmodule Huex do
   @spec set_group_color(Bridge.t, group, xy_color, non_neg_integer) :: Bridge.t
   def set_group_color(bridge, group, {x, y}, transition_time_ms) do
     bridge |> set_group_state(group, %{on: true, xy: [x, y], transitiontime: transition_time(transition_time_ms)})
+  end
+
+  @doc """
+  In- or decrement the brigthness of the given group (a value between -1 and 1).
+  Requires the connection to be authorized.
+  """
+  @spec nudge_group_brightness(Bridge.t, group, float) :: Bridge.t
+  def set_group_brightness(bridge, group, brightness_inc) do
+    bridge |> set_group_state(group, %{on: true, bri: round(brightness_inc * 255.0)})
+  end
+  
+  @doc """
+  In- or decrement the brigthness of the given group (a value between -1 and 1) using the given transition time (in ms).
+  Requires the connection to be authorized.
+  """
+  @spec nudge_group_brightness(Bridge.t, group, float, non_neg_integer) :: Bridge.t
+  def set_group_brightness(bridge, group, brightness_inc, transition_time_ms) do
+    bridge |> set_group_state(group, %{on: true, bri: round(brightness_inc * 255.0), transitiontime: transition_time(transition_time_ms)})
   end
 
   @doc """
